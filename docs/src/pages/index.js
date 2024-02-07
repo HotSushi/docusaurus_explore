@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import DocusaurusImageUrl from '@site/static/img/openhouse_logo.png';
 
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
@@ -12,16 +13,21 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+        <div class="row">
+          <div class="col col--4 col--offset-1">
+            <Heading as="h1" className={clsx('hero__title', styles.heroTitleStyle)}>
+              {siteConfig.tagline}
+            </Heading>
+            <p className={clsx('hero__subtitle')}>{siteConfig.customFields.oneLineSummary}</p>
+            <Link
+                className={clsx('button button--secondary button--lg', styles.heroButton)}
+                to="/docs/intro">
+                Learn More
+            </Link>
+          </div>
+          <div class="col col--4 col--offset-2">
+            <img src={DocusaurusImageUrl} />
+          </div>
         </div>
       </div>
     </header>
@@ -32,8 +38,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description={`${siteConfig.tagline}`}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
